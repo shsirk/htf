@@ -1,0 +1,19 @@
+create table categories(c_id int not null auto_increment,c_name char(20) not null, primary key(c_id));
+
+create table users(u_id int not null auto_increment, u_name char(20) not null, u_password char(50) not null, u_email char(254) not null, u_active int not null default 0, primary key(u_id));
+
+create table game_timeline(start_time datetime not null, end_time datetime not null);
+
+create table questions(q_id int not null auto_increment, c_id int not null, q_tag char(15) not null, q_name char(255) not null, q_hint char(50), q_points int not null, flag char(20) not null, primary key(q_id));
+
+
+create table scoretable(s_id int not null auto_increment, q_id int not null, u_id int not null, s_solvetime datetime not null);
+
+create table score(u_id int not null, s_total_score int not null, s_updatedtime datetime not null);
+
+select u.u_name, u.u_email, s.s_score, s.s_solvetime from users u, scoretable2 s where u.u_id = s.u_id;
+
+
+SELECT u.u_name, u.u_email, s.s_total_score, s.s_updatedtime FROM users u, score s WHERE u.u_id = s.u_id ORDER BY s.s_total_score DESC, s.s_updatedtime ASC;
+create table solve_logs(id integer(32) not null auto_increment, u_id integer not null, q_id integer not null, primary key(id));
+
